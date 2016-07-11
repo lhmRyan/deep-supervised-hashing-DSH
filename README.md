@@ -1,5 +1,4 @@
-#This is the README information of the following publication, please 
-refer to "README.md" for the original README information of Caffe.
+#This is the README information of the following publication
 ========================================================================
 Deep Supervised Hashing for Fast Image Retrieval,
 Version 1.0,  Copyright(c) May, 2016
