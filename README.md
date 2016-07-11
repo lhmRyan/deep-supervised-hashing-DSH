@@ -11,10 +11,14 @@ Example usage:
 1. Modify "Makefile.config" according to your system, and follow the 
    instructions on "http://caffe.berkeleyvision.org/installation.html"
    to compile the source code.
+
 2. Run "data/cifar10/get_cifar10.sh" to download the data of CIFAR-10.
+
 3. Run "CIFAR-10/create_cifar10.sh" to convert the data of CIFAR-10
    to LMDB format.
+
 4. Run "CIFAR-10/train_full.sh" to train an example model.
+
 5. Run "CIFAR-10/finetune.sh" to finetune an existing model 
    for different code length.
 
