@@ -1,0 +1,15 @@
+net: "CIFAR-10/finetune.prototxt"
+#test_iter: 100
+#test_interval: 1000
+base_lr: 0.0001
+momentum: 0.9
+weight_decay: 0.004
+lr_policy: "step"
+gamma: 0.6
+stepsize: 4000
+display: 200
+average_loss: 200
+max_iter: 30000
+snapshot: 10000
+snapshot_prefix: "CIFAR-10/cifar10"
+solver_mode: GPU
