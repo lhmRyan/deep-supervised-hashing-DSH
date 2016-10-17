@@ -31,7 +31,7 @@ Example usage:
    to a single image, and the labels of these images in "label.dat".
    You can modify this file to extract binary codes from other models.
 
-7. Run "test.m" to compute the retrieval mAP. It is normal if the result
+7. Run "CIFAR-10/test_map.m" to compute the retrieval mAP. It is normal if the result
    is higher than those reported in the original publication.
 
 -------------------------------------------------------------------------
