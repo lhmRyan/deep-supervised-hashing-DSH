@@ -25,6 +25,14 @@ Example usage:
 
 5. Run "CIFAR-10/finetune.sh" to finetune an existing model 
    for different code length.
+   
+6. Run "CIFAR-10/extract_code.sh" to get the "real-valued" binary
+   code of test images, stored in "code.dat", with each 12 values corresponding
+   to a single image, and the labels of these images in "label.dat".
+   You can modify this file to extract binary codes from other models.
+
+7. Run "test.m" to compute the retrieval mAP. It is normal if the result
+   is higher than those reported in the original publication.
 
 -------------------------------------------------------------------------
 
