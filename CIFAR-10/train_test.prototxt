@@ -271,26 +271,8 @@ layer {
     }
   }
 }
-#layer {
-#  name: "loss_cls"
-#  type: "SoftmaxWithLoss"
-#  bottom: "ip1_cls"
-#  bottom: "label"
-#  top: "loss_cls"
-#}
-#layer {
-#  name: "accuracy"
-#  type: "Accuracy"
-#  bottom: "ip1_cls"
-#  bottom: "label"
-#  top: "accuracy"
-#  include {
-#    phase: TEST
-#  }
-#}
 layer {
   name: "loss"
-#  type: "TripletHashingLoss"
   type: "HashingLoss"
   hashing_loss_param {
     bi_margin: 24.0
@@ -300,13 +282,3 @@ layer {
   bottom: "label"
   top: "loss"
 }
-#layer {
-#  name: "loss"
-#  type: "DPSHLoss"
-#  hashing_loss_param {
-#    tradeoff: 0.1
-#  }
-#  bottom: "ip1"
-#  bottom: "label"
-#  top: "loss"
-#}

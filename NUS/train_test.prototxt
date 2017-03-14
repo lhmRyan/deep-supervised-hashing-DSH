@@ -238,8 +238,7 @@ layer {
 }
 layer {
   name: "loss"
-  type: "TripletHashingLoss"
-#  type: "HashingLoss"
+  type: "HashingLoss"
   hashing_loss_param {
     bi_margin: 24.0
     tradeoff: 0.0
@@ -248,20 +247,3 @@ layer {
   bottom: "label"
   top: "loss"
 }
-#layer {
-#  name: "loss"
-#  type: "DPSHLoss"
-#  hashing_loss_param {
-#    tradeoff: 0.1
-#  }
-#  bottom: "ip1"
-#  bottom: "label"
-#  top: "loss"
-#}
-#layer {
-#  name: "loss"
-#  type: "SigmoidCrossEntropyLoss"
-#  bottom: "ip1_cls"
-#  bottom: "label"
-#  top: "loss"
-#}
