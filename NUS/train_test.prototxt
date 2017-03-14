@@ -11,6 +11,7 @@ layer {
   }
   transform_param {
     mirror: true
+    mean_file: "NUS/mean.binaryproto"
   }
   include: { phase: TRAIN }
 }
@@ -26,6 +27,7 @@ layer {
   }
   transform_param {
     mirror: false
+    mean_file: "NUS/mean.binaryproto"
   }
   include: { phase: TEST }
 }
@@ -234,20 +236,32 @@ layer {
     }
   }
 }
-#layer {
-#  name: "sigmoid"
-#  type: "Sigmoid"
-#  bottom: "ip1"
-#  top: "ip1"
-#}
 layer {
-    name: "loss"
-    type: "HashingLoss"
-    hashing_loss_param {
-	bi_margin: 24.0
-	tradeoff: 0.01
-    }
-    bottom: "ip1"
-    bottom: "label"
-    top: "loss"
+  name: "loss"
+  type: "TripletHashingLoss"
+#  type: "HashingLoss"
+  hashing_loss_param {
+    bi_margin: 24.0
+    tradeoff: 0.0
+  }
+  bottom: "ip1"
+  bottom: "label"
+  top: "loss"
 }
+#layer {
+#  name: "loss"
+#  type: "DPSHLoss"
+#  hashing_loss_param {
+#    tradeoff: 0.1
+#  }
+#  bottom: "ip1"
+#  bottom: "label"
+#  top: "loss"
+#}
+#layer {
+#  name: "loss"
+#  type: "SigmoidCrossEntropyLoss"
+#  bottom: "ip1_cls"
+#  bottom: "label"
+#  top: "loss"
+#}

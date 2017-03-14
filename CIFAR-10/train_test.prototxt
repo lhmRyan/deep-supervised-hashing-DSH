@@ -15,23 +15,24 @@ name: "CIFAR10_full"
 #  }
 #  include: { phase: TRAIN }
 #}
-#layer {
-#  name: "cifar"
-#  type: "ImageData"
-#  top: "data"
-#  top: "label"
-#  image_data_param {
-#    source: "CIFAR-10/test.txt"
-#    root_folder: "/home/data/liuhaomiao/CIFAR-10/Test/"
-#    batch_size: 100
-#    shuffle: false
-#    label_num: 1
-#  }
-#  transform_param {
-#    mirror: false
-#  }
-#  include: { phase: TEST }
-#}
+#layer {                                                         
+#  name: "cifar"                                                 
+#  type: "ImageData"                                             
+#  top: "data"                                                   
+#  top: "label"                                                  
+#  image_data_param {                                            
+#    source: "CIFAR-10/test.txt"                                 
+#    root_folder: "/home/data/liuhaomiao/CIFAR-10/Test/"         
+#    batch_size: 100                                             
+#    shuffle: false                                              
+#    label_num: 1                                                
+#  }                                                             
+#  transform_param {                                             
+#    mirror: false                                               
+#  }                                                             
+#  include: { phase: TEST }                                      
+#}                                                               
+
 layer {
   name: "cifar"
   type: "Data"
@@ -43,6 +44,7 @@ layer {
     batch_size: 200
   }
   transform_param {
+    mean_file: "CIFAR-10/mean.binaryproto"
     mirror: true
   }
   include: { phase: TRAIN }
@@ -58,10 +60,12 @@ layer {
     batch_size: 100
   }
   transform_param {
+    mean_file: "CIFAR-10/mean.binaryproto"
     mirror: false
   }
   include: { phase: TEST }
 }
+
 layer {
   name: "conv1"
   type: "Convolution"
@@ -267,8 +271,26 @@ layer {
     }
   }
 }
+#layer {
+#  name: "loss_cls"
+#  type: "SoftmaxWithLoss"
+#  bottom: "ip1_cls"
+#  bottom: "label"
+#  top: "loss_cls"
+#}
+#layer {
+#  name: "accuracy"
+#  type: "Accuracy"
+#  bottom: "ip1_cls"
+#  bottom: "label"
+#  top: "accuracy"
+#  include {
+#    phase: TEST
+#  }
+#}
 layer {
   name: "loss"
+#  type: "TripletHashingLoss"
   type: "HashingLoss"
   hashing_loss_param {
     bi_margin: 24.0
@@ -278,3 +300,13 @@ layer {
   bottom: "label"
   top: "loss"
 }
+#layer {
+#  name: "loss"
+#  type: "DPSHLoss"
+#  hashing_loss_param {
+#    tradeoff: 0.1
+#  }
+#  bottom: "ip1"
+#  bottom: "label"
+#  top: "loss"
+#}

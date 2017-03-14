@@ -11,6 +11,7 @@ layer {
   }
   transform_param {
     mirror: true
+    mean_file: "CIFAR-10/mean.binaryproto"
   }
   include: { phase: TRAIN }
 }
@@ -26,6 +27,7 @@ layer {
   }
   transform_param {
     mirror: false
+    mean_file: "CIFAR-10/mean.binaryproto"
   }
   include: { phase: TEST }
 }
@@ -225,7 +227,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 48
+    num_output: 24
     weight_filler {
       type: "xavier"
     }
@@ -238,7 +240,7 @@ layer {
     name: "loss"
     type: "HashingLoss"
     hashing_loss_param {
-	bi_margin: 96.0
+	bi_margin: 48.0
 	tradeoff: 0.01
     }
     bottom: "ip1_f"

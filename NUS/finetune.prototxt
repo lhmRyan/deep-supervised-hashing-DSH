@@ -5,12 +5,13 @@ layer {
   top: "data"
   top: "label"
   data_param {
-    source: "/media/liu/000AAC4D00095A28/NUS-WIDE/train_lmdb"
+    source: "../NUS-WIDE/train_lmdb"
     backend: LMDB
     batch_size: 200
   }
   transform_param {
     mirror: true
+    mean_file: "NUS/mean.binaryproto"
   }
   include: { phase: TRAIN }
 }
@@ -20,12 +21,13 @@ layer {
   top: "data"
   top: "label"
   data_param {
-    source: "/media/liu/000AAC4D00095A28/NUS-WIDE/test_lmdb"
+    source: "../NUS-WIDE/test_lmdb"
     backend: LMDB
     batch_size: 100
   }
   transform_param {
     mirror: false
+    mean_file: "NUS/mean.binaryproto"
   }
   include: { phase: TEST }
 }
@@ -238,8 +240,8 @@ layer {
     name: "loss"
     type: "HashingLoss"
     hashing_loss_param {
-	bi_margin: 48.0
-	tradeoff: 0.01
+	    bi_margin: 48.0
+	    tradeoff: 0.01
     }
     bottom: "ip1_f"
     bottom: "label"
