@@ -241,7 +241,7 @@ layer {
   type: "HashingLoss"
   hashing_loss_param {
     bi_margin: 24.0
-    tradeoff: 0.0
+    tradeoff: 0.01
   }
   bottom: "ip1"
   bottom: "label"
